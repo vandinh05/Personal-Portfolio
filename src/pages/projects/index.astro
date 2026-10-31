@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { visibleProjects, demoDisclaimer } from '../../data/demoContent';
+---
+<BaseLayout title="Dự án minh họa — Hồ Văn Dinh">
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <section class="project-intro">
+      <div class="shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><span aria-current="page">Dự án</span></nav>
+        <div class="project-intro-grid"><div><p class="eyebrow">PROJECTS / DEMO COLLECTION</p><h1>Những bài toán.<br /><span>Nhiều góc nhìn.</span></h1></div><p class="intro-description">Khám phá cách trình bày một case study, từ bối cảnh vận hành đến phương án dữ liệu và AI. Cùng một cấu trúc, mỗi bài toán có một cách tiếp cận.</p></div>
+      </div>
+    </section>
+    <section class="shell section" aria-labelledby="listing-title">
+      <aside class="demo-notice"><strong>DEMO / ILLUSTRATIVE</strong><p>{demoDisclaimer}</p></aside>
+      <div class="listing-heading"><h2 id="listing-title">Case study minh họa</h2><span class="mono">{visibleProjects.length} CASE STUDIES</span></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-7">{visibleProjects.map(project => <ProjectCard project={project} />)}</div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

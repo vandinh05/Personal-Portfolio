@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ExpertiseCard from '../components/ExpertiseCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profile, expertise, experiences, featuredProjects } from '../data/demoContent';
+---
+<BaseLayout title="Hồ Văn Dinh — Management · Data · AI">
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="shell hero-inner">
+        <div class="hero-copy"><p class="eyebrow hero-eyebrow"><span class="status-dot"></span> PERSONAL PORTFOLIO <span class="hero-edition">/ 2026</span></p><h1 id="hero-title">Hồ Văn Dinh<span class="hero-period">.</span></h1><p class="hero-tracks">Management <span>·</span> Data <span>·</span> AI</p><p class="hero-description">{profile.introduction}</p><a class="button-primary" href="#work">Khám phá dự án <span aria-hidden="true">↗</span></a><a class="hero-about" href="#about">Về tôi <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="orbit-center">hd<span>.</span></div><span class="orbit-tag tag-management">01 / MANAGEMENT</span><span class="orbit-tag tag-data">02 / DATA</span><span class="orbit-tag tag-ai">03 / AI & SOFTWARE</span><span class="art-caption">HUMAN THINKING. ENGINEERING MINDSET.</span></div>
+      </div>
+      <div class="shell hero-bottom"><span>Một hồ sơ. Ba góc nhìn.</span><span class="mono">BẢN PROTOTYPE · NỘI DUNG ĐANG HOÀN THIỆN</span></div>
+    </section>
+    <section class="shell section about-layout" id="about" tabindex="-1" aria-labelledby="about-title">
+      <div><p class="eyebrow"><span>01</span> / ABOUT</p><h2 id="about-title">Hiểu thực tế.<br /><span class="muted">Xây điều hữu ích.</span></h2></div>
+      <div class="about-copy"><p class="lead">{profile.about}</p><p>Điểm kết nối là cách tiếp cận: hiểu bối cảnh, đặt câu hỏi rõ ràng và tìm minh chứng cho từng giải pháp.</p><div class="education-note"><span class="small-label">HỌC VẤN</span><p>Thông tin học vấn đang được xác nhận và sẽ bổ sung sau.</p></div></div>
+    </section>
+    <section class="section expertise-section" id="expertise" tabindex="-1" aria-labelledby="expertise-title"><div class="shell"><SectionHeading id="expertise-title" number="02" label="EXPERTISE & SKILLS" title="Ba hướng đi. Một tư duy."><p>Các lĩnh vực tập trung và chủ đề phát triển; chưa phải danh sách kỹ năng đã được xác minh.</p></SectionHeading><div class="grid grid-cols-1 md:grid-cols-3 gap-5">{expertise.map(item => <ExpertiseCard item={item} />)}</div></div></section>
+    <section class="shell section experience-layout" id="experience" tabindex="-1" aria-labelledby="experience-title"><div><p class="eyebrow"><span>03</span> / EXPERIENCE</p><h2 id="experience-title">Bắt đầu từ<br />trải nghiệm thực tế.</h2><p class="section-note">Bố cục minh họa cho hành trình làm việc.<br />Chi tiết sẽ được bổ sung sau khi xác nhận.</p></div><div class="experience-list">{experiences.map((item, index) => <article class="experience-item"><span class="experience-index">0{index + 1}</span><div><p class="eyebrow">{item.category}</p><h3>{item.title}</h3><p>{item.description}</p><p class="demo-note">{item.note}</p></div></article>)}</div></section>
+    <section class="section work-section" id="work" tabindex="-1" aria-labelledby="work-title"><div class="shell"><div class="work-heading"><div><p class="eyebrow"><span>04</span> / FEATURED WORK</p><h2 id="work-title">Tư duy qua từng bài toán.</h2></div><p>Case study minh họa cách trình bày dự án.<br />Không đại diện cho sản phẩm đã triển khai.<br /><a class="text-link" href="/projects/">Xem tất cả dự án ↗</a></p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-7">{featuredProjects.map(project => <ProjectCard project={project} />)}</div></div></section>
+    <section class="shell section" id="contact" tabindex="-1" aria-labelledby="contact-title"><div class="contact-panel"><div><p class="eyebrow"><span>05</span> / CONTACT & RESUME</p><h2 id="contact-title">Mọi kết nối tốt đẹp<br />bắt đầu từ một cuộc trò chuyện<span>.</span></h2></div><div class="contact-note"><span class="contact-symbol" aria-hidden="true">↗</span><p>Kênh liên hệ và các phiên bản CV<br />đang được chuẩn bị.</p><span class="small-label">SẼ BỔ SUNG SAU KHI ĐƯỢC XÁC NHẬN</span></div></div></section>
+  </main>
+  <footer class="shell footer"><a class="wordmark" href="#home">Hồ Văn Dinh<span class="blue">.</span></a><p>© 2026 · Personal Portfolio · Prototype</p><a href="#home">Về đầu trang <span aria-hidden="true">↑</span></a></footer>
+</BaseLayout>

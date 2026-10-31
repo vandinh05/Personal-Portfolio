@@ -1,0 +1,30 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { demoDisclaimer, trackLabels, statusLabels, type Project } from '../data/demoContent';
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+<BaseLayout title={`${project.title} — Case study demo | Hồ Văn Dinh`}>
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <section class="project-intro case-intro">
+      <div class="shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Trang chủ</a><span aria-hidden="true">/</span><a href="/projects/">Dự án</a><span aria-hidden="true">/</span><span aria-current="page">{project.title}</span></nav>
+        <div class="project-intro-grid"><div><p class="eyebrow">CASE STUDY / {project.number}{project.demo && <span class="case-demo-label"> · DEMO / ILLUSTRATIVE</span>}</p><h1>{project.title}<span>.</span></h1><p class="case-summary">{project.description}</p></div><dl class="case-facts"><div><dt>ĐỊNH HƯỚNG</dt><dd>{project.careerTracks.map(track => trackLabels[track]).join(' · ')}</dd></div><div><dt>TRẠNG THÁI TÌNH HUỐNG</dt><dd>{statusLabels[project.status]}</dd></div><div><dt>PHẠM VI MINH HỌA</dt><dd>{project.role}</dd></div></dl></div>
+      </div>
+    </section>
+    <div class="shell case-content">
+      {project.demo && <aside class="demo-notice"><strong>DEMO / ILLUSTRATIVE</strong><p>{demoDisclaimer}</p></aside>}
+      <div class="case-body-grid">
+        <nav class="case-toc" aria-label="Mục lục case study"><p class="eyebrow">TRONG CASE STUDY</p><ol>{project.sections.map((section, index) => <li><a href={`#${section.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{section.title}</a></li>)}</ol></nav>
+        <article class="case-article" aria-label={`Nội dung ${project.title}`}>
+          {project.sections.map((section, index) => <section id={section.id} tabindex="-1" aria-labelledby={`${section.id}-title`}><p class="eyebrow">{String(index + 1).padStart(2, '0')} / CASE STUDY</p><h2 id={`${section.id}-title`}>{section.title}</h2>{section.paragraphs.map(paragraph => <p>{paragraph}</p>)}{section.steps && <ol class="case-steps">{section.steps.map(step => <li>{step}</li>)}</ol>}</section>)}
+          <a class="text-link case-back" href="/projects/">← Trở về danh sách dự án</a>
+        </article>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
